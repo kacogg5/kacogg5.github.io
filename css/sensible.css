@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Source+Serif+4&family=Rubik&display=swap');
+
+/* Tags */
+body {
+  font-family: 'Source Serif 4', sans-serif;
+
+  margin: 0;
+  display: grid;
+  place-content: center;
+
+  background: #d4d4d4;
+  user-select: none;
+}
+
+header {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  background: lightslategray;
+}
+
+#header-main {
+  margin: 0 auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  font-family: 'Rubik', serif;
+}
+
+#header-logo {
+  font-family: 'Rubik', serif;
+  font-weight: normal;
+}
+
+#header-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12pt;
+  height: 20pt;
+
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 3px 16px 4px 16px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+header p {
+  line-height: 12pt;
+  padding: 2px 9px;
+  border-radius: 50pc;
+  width: 75px;
+  text-align: center;
+  transition: outline 75ms;
+}
+
+header p:hover {
+  outline: 2px solid white;
+  transition: 75ms;
+}
+
+main {
+  position: relative;
+  top: 4em;
+}

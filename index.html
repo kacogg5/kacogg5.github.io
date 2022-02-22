@@ -11,9 +11,13 @@
 		<script src="./js/concept.js" type="text/javascript"></script>
 	</head>
   <body>
-		<div id = "main-container" class = "kx-auto">
-			<div id = "main-container-desktop" data-size-threshold = "900,500">
-				<div class = "kx-scene" data-show-order = "0">
+    <div id = "main-container" class = "kx-auto">
+      <div id = "main-container-desktop" data-size-threshold = "900,500">
+        <div class = "kx-scene" data-show-order = "0">
+          <header
+            data-it-move-y="def -S(40,0)">
+
+          </header>
           <main>
             <section id="about"
                 data-trans-y="0,0 def 0; 0,0 2:50 0--S(-Height/2,0) parabolic; 0,0 51:100 L(0)--(-Height) linear"
@@ -43,10 +47,10 @@
                   <path d="M0 0 H2 L1.25 1.3 A0.27 0.27 0 0 1 0.75 1.3 L0 0z" fill="white" />
                 </svg>
               </div>
-              <svg width="100vw" height="99vh" viewbox="0 1 100 50" bgcolor="transparent" style="border-bottom: 8px solid royalblue">
+              <svg width="100vw" height="calc(100vh - 8px)" viewbox="0 1 100 50" bgcolor="transparent" style="border-bottom: 8px solid royalblue">
                 <rect height="52" width="100" fill="rgba(170, 210, 245, 0.5)" />
                 <path fill-rule="nonzero" fill="#10161c"
-                      d="M0 0 h100 v52 h-100 v-52 z
+                      d="M-5 0 h110 v52 h-110 v-52z
                         M38 3 a1 1 0 0 0 -1 1 v18.434 a1 1 0 0 0 0.486 0.857
                         l24.277 14.566 a1 1 0 0 0 0.514 0.143 h23.723 a1 1 0 0 0 1 -1
                         v-33 a1 1 0 0 0 -1 -1 h-48 z" />
@@ -138,28 +142,48 @@
                 <circle cx="-0.45" cy="2.15" r="0.7" fill="#50565c" />
                 <circle cx="-0.45" cy="2.15" r="0.4" fill="black" />
               </svg>
-              <div id="coming-soon-div"
-                  data-it-move-y="def Height"
-                  data-move-y="0:50 Height--(Height/2-80) linear"
-                >
-                <h2>
-                  Awesome Coming Soon
-                </h2>
-              </div>
             </section>
-            <div class="spacer"></div>
 
-            <section class="project-right">
-              <div class="project-img-container">
-                <div class="project-img push">
-                </div>
+            <section id="skills-about"
+                     class="content-card"
+                     data-it-move-y="def Height"
+                     data-move-y="25:225 (Height+300)--(-Height-300)"
+              >
+              <div class="section-head">
+                <h3>Technical Skills</h3>
               </div>
-              <div class="project-about"></div>
+              <div class="skills">
+                <p class="skill-paragraph">
+                  <span>HTML</span><span>CSS</span><span>React</span><span>Ruby-on-Rails</span>
+                  <span>PHP</span><span>PySide6/PyQt6</span><span>Flutter</span><br><span>Amazon Web Services</span>
+                  <span>Google Cloud Platform</span><span>Databases</span><span>IoT</span><br><span>C/C++</span>
+                  <span>C#</span><span>Dart</span><span>Haskell</span><span>Java</span>
+                  <span>JavaScript</span><span>Python</span><span>Ruby</span>
+                </p>
+              </div>
+              <div class="section-head">
+                <h2>About</h2>
+              </div>
+              <div class="text-container">
+                <p>
+                  From Desktop applications to android apps to websites and more, I am passionate about creating
+                  interfaces that people want to use and that enhance the quality of the application. I'm proficient
+                  in languages like Python, Javascript and Ruby, and am comfortable learning new languages, frameworks
+                  and tools when the project calls for it.
+                </p>
+              </div>
             </section>
-            
-            <div class="spacer end"></div>
+
+            <section id="sensible-card"
+                     class="content-card"
+                     data-it-move-y="def Height"
+                     data-move-y="125:325 (Height+300)--(-Height-300)"
+            >
+              <div class="section-head">
+                <h2>Sensible</h2>
+              </div>
+            </section>
           </main>
-          <div id="rocket"></div>
         </div>
       </div>
     </div>

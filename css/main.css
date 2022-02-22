@@ -16,7 +16,7 @@ main {
   height: 100vh;
   color: white;
   position: absolute;
-  z-index: 2;
+  z-index: 4;
 }
 
 #landing-name {
@@ -113,32 +113,16 @@ main {
 
 #big-gear-1 {
   position: absolute;
-  bottom: 5vh;
   right: 5vw;
+  bottom: 5vh;
   animation: gear-turn-clockwise 8s linear infinite;
 }
 
 #big-gear-2 {
   position: absolute;
-  left: 23vw;
-  top: -25.5vh;
+  right: calc(5vw + 67.2vmin);
+  bottom: calc(5vh + 27.7vmin);
   animation: gear-turn-counterclockwise 8s linear infinite;
-}
-
-#coming-soon-div {
-  height: 160px;
-  width: 400px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-
-  background: #10161c;
-  border: 6px solid #40464c;
-  border-radius: 12px;
-
-  display: grid;
-  place-content: center;
-  color: #90969c;
 }
 
 @keyframes gear-turn-clockwise {
@@ -157,6 +141,22 @@ main {
   to {
     transform: rotateZ(-360deg);
   }
+}
+
+#coming-soon-div {
+  height: 160px;
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  background: #10161c;
+  border: 6px solid #40464c;
+  border-radius: 12px;
+
+  display: grid;
+  place-content: center;
+  color: #90969c;
 }
 
 @keyframes letter-hover {
@@ -212,3 +212,73 @@ main {
   }
 }
 
+.content-card {
+  position: absolute;
+  width: max(35vw, 560px);
+  min-height: 100vh;
+
+  padding: 5vh 2em;
+  text-align: justify;
+  font-size: 14pt;
+
+  background: #30363c;
+  color: #eeeeee;
+  z-index: 2;
+
+  box-shadow: 0 0 2vw #303030;
+  border-left: 8px solid royalblue;
+  border-right: 8px solid gold;
+  border-radius: 8px;
+  overflow: visible;
+
+  display: grid;
+  place-content: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#skills-about {
+  left: 15vw;
+}
+
+#sensible-card {
+  right: 15vw;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.section-head * {
+  margin-block: 0;
+}
+
+.section-head h1 {
+  text-transform: uppercase;
+}
+
+.section-head::after, .section-head::before {
+  content: '';
+  display: grid;
+  height: 2px;
+  width: 3em;
+  background: #eeeeee;
+  border-radius: 2px;
+  margin: auto 1.5em;
+}
+
+.skill-paragraph {
+  align-items: center;
+  text-align: center;
+}
+
+.skill-paragraph :not(:first-child, span ~ br + span)::before {
+  content: ' - ';
+  color: lightslategray;
+  font-weight: bolder;
+}

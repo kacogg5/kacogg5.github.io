@@ -2,9 +2,29 @@
 
 body {
   margin: 0;
-  /* background: #10161c; */
   font-family: 'Libre Baskerville', serif !important;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+header {
+  position: absolute;
+  width: 100vw;
+  background: #10161C;
+  display: grid;
+  place-content: center;
+  z-index: 5;
+}
+
+header > div {
+  width: 70vw;
+  height: 100%;
+  display: flex;
+  color: #eeeeee;
 }
 
 main {
@@ -225,7 +245,7 @@ main {
   color: #eeeeee;
   z-index: 2;
 
-  box-shadow: 0 0 2vw #303030;
+  box-shadow: 0 0 2vw #10161c;
   border-left: 8px solid royalblue;
   border-right: 8px solid gold;
   border-radius: 8px;
@@ -244,6 +264,13 @@ main {
 
 #sensible-card {
   right: 15vw;
+}
+
+#contact-card {
+  left: 50vw;
+  transform: translate(-50%, 0);
+  min-height: unset;
+  height: 70vh;
 }
 
 .section-head {
@@ -281,4 +308,113 @@ main {
   content: ' - ';
   color: lightslategray;
   font-weight: bolder;
+}
+
+form {
+  display: grid;
+  grid-template-areas:
+    "ln   inn "
+    "le   ine "
+    "lp   inp "
+    "lm   lm  "
+    "inm  inm "
+    "sub  sub";
+  grid-gap: 8px 8px;
+
+  padding: 2em;
+
+  border-bottom: 2px solid black;
+  border-top: 1px solid black;
+  border-left: 4px solid gold;
+  border-right: 4px solid royalblue;
+  border-radius: 8px;
+}
+
+#confirm-send {
+  background: lightgreen;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-content: center;
+  height: 0;
+  width: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.confirmed {
+  animation: confirm-animation 750ms forwards;
+}
+
+@keyframes confirm-animation {
+  50% {
+    height: 12em;
+    width: 8px;
+  }
+  100% {
+    height: 12em;
+    width: 12em;
+  }
+}
+
+input[type='text'], textarea {
+  border: none;
+  border-radius: 8px;
+}
+
+.error {
+  border: 2px solid crimson;
+}
+
+#name-label {
+  grid-area: ln;
+}
+
+#email-label {
+  grid-area: le;
+}
+
+#phone-label {
+  grid-area: lp;
+}
+
+#message-label {
+  grid-area: lm;
+}
+
+#contact-name {
+  grid-area: inn;
+}
+
+#contact-email {
+  grid-area: ine;
+}
+
+#contact-phone {
+  grid-area: inp;
+}
+
+#contact-message {
+  grid-area: inm;
+}
+
+#contact-submit {
+  grid-area: sub;
+  height: 1.5em;
+  font-family: "Dongle", serif;
+  font-size: 24pt;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  background: royalblue;
+}
+
+#contact-submit:hover {
+  background: #2149c1;
+}
+
+.hide {
+  display: none;
 }

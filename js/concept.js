@@ -1,3 +1,5 @@
+/* jshint esversion: 8 */
+
 var scenes = [];
 var numScenes = 0;
 var frame = 0;
@@ -21,34 +23,50 @@ const scrollWaitTime = 5;
 const autoWaitTime = 22;
 const verbose = false;
 
-$(setup);
-
 function setup() {
-	let ap = $(".kx-auto");
-	if (ap.length == 1) {
-		let dtLayout = ap.find("#"+ap.attr('id')+"-desktop");
+	let ap = $('.kx-auto');
+	if (ap.length === 1) {
+		let dtLayout = ap.find('#'+ap.attr('id')+'-desktop');
 		var dtSize = -1;
-		if (dtLayout.length == 1) dtSize = dtLayout.data('size-threshold').split(',');
+		if (dtLayout.length === 1) {
+			dtSize = dtLayout.data('size-threshold').split(',');
+		}
 		
-		let tbLayout = ap.find("#"+ap.attr('id')+"-tablet");
+		let tbLayout = ap.find('#'+ap.attr('id')+'-tablet');
 		var tbSize = -1;
-		if (tbLayout.length == 1) tbSize = tbLayout.data('size-threshold').split(',');
+		if (tbLayout.length === 1) {
+			tbSize = tbLayout.data('size-threshold').split(',');
+		}
 		
-		let mbLayout = ap.find("#"+ap.attr('id')+"-mobile");
+		let mbLayout = ap.find('#'+ap.attr('id')+'-mobile');
 		var mbSize = -1;
-		if (mbLayout.length == 1) mbSize = mbLayout.data('size-threshold').split(',');
+		if (mbLayout.length === 1) {
+			mbSize = mbLayout.data('size-threshold').split(',');
+		}
 		
-		if (dtSize != -1 && $(window).width() > dtSize[0] && $(window).height() > dtSize[1]) {
-			if (tbLayout.length == 1) tbLayout.remove();
-			if (mbLayout.length == 1) mbLayout.remove();
+		if (dtSize !== -1 && $(window).width() > dtSize[0] && $(window).height() > dtSize[1]) {
+			if (tbLayout.length === 1) {
+				tbLayout.remove();
+			}
+			if (mbLayout.length === 1) {
+				mbLayout.remove();
+			}
 			setupAutoParalax(dtLayout);
-		} else if (tbSize != -1 && $(window).width() > tbSize[0] && $(window).height() > tbSize[1]) {
-			if (dtLayout.length == 1) dtLayout.remove();
-			if (mbLayout.length == 1) mbLayout.remove();
+		} else if (tbSize !== -1 && $(window).width() > tbSize[0] && $(window).height() > tbSize[1]) {
+			if (dtLayout.length === 1) {
+				dtLayout.remove();
+			}
+			if (mbLayout.length === 1) {
+				mbLayout.remove();
+			}
 			setupAutoParalax(tbLayout);
-		} else if (mbSize != -1 && $(window).width() > mbSize[0] && $(window).height() > mbSize[1]) {
-			if (dtLayout.length == 1) dtLayout.remove();
-			if (tbLayout.length == 1) tbLayout.remove();
+		} else if (mbSize !== -1 && $(window).width() > mbSize[0] && $(window).height() > mbSize[1]) {
+			if (dtLayout.length === 1) {
+				dtLayout.remove();
+			}
+			if (tbLayout.length === 1) {
+				tbLayout.remove();
+			}
 			setupAutoParalax(mbLayout);
 		} else {
 			ap.css('display', 'none');
@@ -57,11 +75,14 @@ function setup() {
 	}
 }
 
+var last0 = -1;
+var last1 = -1;
+var touching = false;
 function setupAutoParalax (e) {
 	// Register Scenes
-	var lastFrame = 0
-	e.find(".kx-scene").each(function(key, element) {
-		var el = $(element)
+	var lastFrame = 0;
+	e.find('.kx-scene').each(function(key, element) {
+		var el = $(element);
 		var pe = new KaralaxScene(el);
 		// if (el.data('show-order') > 0)
 			// el.css('display', 'none');
@@ -71,9 +92,9 @@ function setupAutoParalax (e) {
 		
 		// register trigger:
 		// trigger format: selector event-type animation-duration
-		var trig = (t = el.data("trigger")) !== undefined && t != "" ? t : "body mousewheel 0:"+pe.MainDuration ;
-		var tel = $(trig.split(" ")[0]), ev = trig.split(" ")[1], stt=trig.split(" ")[2].split(":")[0], end=trig.split(" ")[2].split(":")[1]
-		if (ev != 'mousewheel') {
+		var trig = (t = el.data('trigger')) !== undefined && t !== '' ? t : 'body mousewheel 0:'+pe.mainDuration ;
+		var tel = $(trig.split(' ')[0]), ev = trig.split(' ')[1], stt=trig.split(' ')[2].split(':')[0], end=trig.split(' ')[2].split(':')[1];
+		if (ev !== 'mousewheel') {
 			tel.bind(ev, async e =>{ if (!playing) { playing=1; for (frame = stt; frame <= end; frame++) { pe.update(frame); await sleep(autoWaitTime); } playing = 0; target = end; }});
 		}
 		
@@ -82,11 +103,35 @@ function setupAutoParalax (e) {
 	
 	// Initialize First Scene
 	scenes[0].playInAnimation();
-	$('body').bind('mousewheel', async (e) => {
-		target = Math.max(0, target - scenes[0].inFinished * !playing * e.originalEvent.wheelDelta/20);
-		for ( ; frame != Math.round(target); await sleep(scrollWaitTime) ) scenes[0].update(frame+=(target-frame)/Math.abs(target-frame));
+	let body = $('body');
+	body.on('mousewheel', async (e) => {
+		target = Math.max(0, Math.min(target - scenes[0].inFinished * !playing * e.originalEvent.wheelDelta/20, scenes[0].mainDuration));
+		for ( ; frame !== Math.round(target); await sleep(scrollWaitTime) ) scenes[0].update(frame+=(target-frame)/Math.abs(target-frame));
     });
+	body.on('touchstart', async (e) => {
+		touching = true;
+		last0 = last1 = e.changedTouches[0].pageY;
+	});
+	body.on('touchmove', async (e) => {
+		let delta = e.changedTouches[0].pageY - last1;
+		last0 = last1;
+		last1 = e.changedTouches[0].pageY;
+		target = Math.max(0, Math.min(target - scenes[0].inFinished * !playing * delta/10, scenes[0].mainDuration));
+		for ( ; frame !== Math.round(target); await sleep(scrollWaitTime) ) scenes[0].update(frame+=(target-frame)/Math.abs(target-frame));
+	});
+	body.on('touchend', async (e) => {
+		touching = false;
+		let momentum = (last1 - last0) * 10;
+		for ( ; frame !== Math.round(target); await sleep(scrollWaitTime) ) {
+			if (touching) break;
+			target = Math.max(0, target - scenes[0].inFinished * !playing * momentum/200);
+			scenes[0].update(frame += (target - frame) / Math.abs(target - frame));
+			momentum *= 0.995;
+		}
+	});
 }
+
+
 
 function registerAnimations(el, pe) {
 	el = $(el);
@@ -579,3 +624,5 @@ function getDeviceType() {
 	}
 	return "d";
 }
+
+$(setup);

@@ -1,4 +1,4 @@
-/* jshint esversion: 8 */
+/* jshint esversion: 11 */
 
 var scenes = [];
 var numScenes = 0;
@@ -22,6 +22,10 @@ const m = (a,b) => Math.min(a, b);
 const scrollWaitTime = 5;
 const autoWaitTime = 22;
 const verbose = false;
+
+function togglePlaying(value) {
+	playing = value ?? (playing + 1) % 2;
+}
 
 function setup() {
 	let ap = $('.kx-auto');
@@ -70,7 +74,7 @@ function setup() {
 			setupAutoParalax(mbLayout);
 		} else {
 			ap.css('display', 'none');
-			console.log("Your device is not supported.");
+			console.log('Your device is not supported.');
 		}
 	}
 }

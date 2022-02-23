@@ -70,3 +70,13 @@ $('#contact-submit').on('click', e => {
         );
     }
 });
+
+const showKaralaxInfo = () => {
+    document.getElementById('karalax-card').classList.add('slideup');
+    togglePlaying(1);
+};
+
+function hideKaralaxInfo() {
+    document.getElementById('karalax-card').classList.remove('slideup');
+    togglePlaying(0);
+}

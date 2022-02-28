@@ -11,10 +11,13 @@
       <script src="js/karalax.js" type="text/ecmascript"></script>
 	</head>
   <body>
-    <div id = "main-container" class = "kx-auto">
-      <div id = "main-container-desktop" data-size-threshold = "900,500">
-        <div class = "kx-scene" data-show-order = "0">
-          <main>
+    <div id="main-container" class="kx-auto">
+      <div id="main-container-desktop" data-size-threshold="1,1">
+        <div class="kx-scene" data-show-order="0">
+          <main
+              data-it-move-x="def 0"
+              data-c-move-x="425:525 0--(-Width)"
+          >
             <header
                     data-it-size-y="def S(60,1)"
                     data-it-move-y="def -60"
@@ -183,15 +186,34 @@
                      data-it-move-y="def Height"
                      data-move-y="125:325 (Height+300)--(-Height-300)"
             >
+              <div class="card-banner"
+                   style="background: url(./img/sensible.png), #082984; background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
               <div class="section-head">
                 <h2>Sensible</h2>
+              </div>
+              <div class="text-container">
+                <p>
+                  The Sensible Project integrates embedded development with full-stack application development. At CBU,
+                  the College of Engineering holds a yearly robotics competition for all freshman. During this competition, the
+                  students' vehicles collect ping-pong balls, read data using sensors and cross over enemy territories
+                  to win the prize. The College of Engineering recruited the Devitia team to redesign several aspects of
+                  this competition to provide a smoother experience for the competing students.
+                </p>
               </div>
             </section>
 
             <section id="contact-card"
                      class="content-card"
+                     data-it-move-x="def S(Width/2-M(Width*0.175,280)-45,7)"
                      data-it-move-y="def Height"
-                     data-move-y="225:325 (Height+300)--100"
+                     data-c-it-opacity="def 0"
+                     data-c-move-x="225:258 L(7)--S(Width-M(Width*0.35,560)-50,6) revPara;259:293 L(6)--50 cosine;294:325 50--L(7) parabolic"
+                     data-move-y="225:325 (Height+300)--T(10,'vh')"
+                     data-c-rot-z="1,0 225:325 0--360"
+                     data-c-back-r="225:258 48--S(R(0,256),10);259:293 L(10)--S(R(0,256),10);294:325 L(10)--48"
+                     data-c-back-g="225:258 54--S(R(0,256),10);259:293 L(10)--S(R(0,256),10);294:325 L(10)--54"
+                     data-c-back-b="225:258 60--S(R(0,256),10);259:293 L(10)--S(R(0,256),10);294:325 L(10)--60"
+                     data-c-opacity="225:325 0--1"
             >
               <div>
                 <form>
@@ -263,10 +285,11 @@
                 Karalax is a custom scrolling engine implemented in javascript, made to complement CSS styling.
                 This page you are looking at is one example of how Karalax can be used.
               </p>
+              <p id="karalax-hint" data-it-opacity="def 0">hint: close this panel & keep scrolling to see more</p>
             </section>
             <footer
                 data-it-move-y="def Height"
-                data-move-y="280:325 Height--Height-60">
+                data-move-y="295:325 Height--Height-60">
               <div>
                 <p>
                   This website runs on&nbsp;<h2>Karalax</h2>&nbsp;<a id="karalax-more-info" onclick="showKaralaxInfo()">?</a>
@@ -275,6 +298,50 @@
             </footer>
           </main>
         </div>
+      </div>
+      <div id="main-container-tablet" data-size-threshold="1,1">
+        <div class="karalax-demo" style="z-index: -1"
+             data-back-r="565:566 255--215; 595:596 215--185"
+             data-back-g="565:566 255--235; 595:596 235--215"
+             data-back-b="565:566 255--245; 595:596 240--235"
+             data-fore-r="565:566 0--10;595:596 10--20"
+             data-fore-g="565:566 0--10;595:596 10--20"
+             data-fore-b="565:566 0--30;595:596 30--50"
+        >
+          <div id="kd-1" style="">
+            <div id="rotating-border"
+                 data-it-opacity="def 0" data-opacity="535:536 0--1"
+                 data-rot-z="0,0 def 0;0,0 535:625 0--(-3*360)"></div>
+            <h2 class="fake-center-x" style="font-size: 20em;"
+                data-it-opacity="def 0"
+                data-opacity="535:536 0--1;565:566 1--0">
+              THIS
+            </h2>
+            <h2 class="fake-center-x" style="font-size: 20em;"
+                data-it-opacity="def 0"
+                data-opacity="def 0;565:566 0--1; 595:596 1--0">
+              IS
+            </h2>
+          </div>
+          <div class="karalax-demo-right"></div>
+        </div>
+        <h2 style="position: absolute; font-family: 'Arial Black', serif; line-height: 0; margin-block: 0;"
+            data-it-opacity="def 0"
+            data-it-move-x="def S(M(0,Width/2-(2*S(m(T(20,'em'),Width/5.5),'f0'))),'b')"
+            data-it-move-y="def Height/2"
+            data-it-ft-sz="def L('f0')"
+            data-opacity="595:596 0--1"
+            data-move-x="626:675 L('b')--S(Width*0.6,'f1')"
+            data-move-y=""
+            data-ft-sz="626:675 L('f0')--T(9,'em')"
+            data-rot-z="1,0 def 0; 1,0 626:675 0--(-90)">
+          KARALAX
+        </h2>
+      </div>
+      <div id="main-container-mobile" data-size-threshold="1,10">
+        <h2>
+          Greatness coming soon. Stay tuned!
+        </h2>
       </div>
     </div>
   </body>
